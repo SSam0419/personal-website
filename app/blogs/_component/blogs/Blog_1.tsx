@@ -43,7 +43,7 @@ const Blog_1 = () => {
           Example
         </div>
 
-        <div className="flex gap-2 justify-between">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 flex flex-col gap-2">
             <p>Loading Button</p>
             <Button isLoading={true}>Loading Button</Button>

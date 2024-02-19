@@ -30,7 +30,7 @@ const Expertise = () => {
   return (
     <div className="">
       <Header headerText="My Expertise" />
-      <div className="flex gap-5">
+      <div className="flex flex-col md:flex-row gap-5">
         {showcaseText.map((text, index) => (
           <div className="flex-1 bg-white py-5 px-3 rounded" key={index}>
             <p className="text-2xl flex items-center gap-3">

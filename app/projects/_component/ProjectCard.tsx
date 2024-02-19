@@ -11,7 +11,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="">
         <p className="text-2xl">{project.projectName}</p>
         <p className="text-small">{project.projectType}</p>
-        <div className="flex gap-3 my-3">
+        <div className="flex flex-wrap gap-3 my-3">
           {project.techStacks.map((tech) => (
             <Chip color="secondary" key={tech}>
               {tech}

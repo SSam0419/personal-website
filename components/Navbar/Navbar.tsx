@@ -9,6 +9,9 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
 } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,15 +20,17 @@ import React from "react";
 
 const CustomNavbar = () => {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
-    <Navbar>
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarBrand>
         <p className="font-bold text-inherit">
           <Link href="/">Sam Lee</Link>
         </p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+
+      <NavbarContent className="hidden md:flex gap-4" justify="center">
         <NavbarItem>
           <Link
             href="/"
@@ -51,8 +56,8 @@ const CustomNavbar = () => {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+      <NavbarContent justify="end" className="hidden md:flex gap-4">
+        <NavbarItem className="hidden md:flex">
           <Popover placement="bottom">
             <PopoverTrigger>
               <Button>Contact me</Button>
@@ -70,6 +75,43 @@ const CustomNavbar = () => {
           </Popover>
         </NavbarItem>
       </NavbarContent>
+
+      <NavbarContent justify="end" className="md:hidden gap-4">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+      </NavbarContent>
+
+      <NavbarMenu>
+        <NavbarMenuItem>
+          <Link
+            onClick={() => setIsMenuOpen(false)}
+            href="/"
+            className={`${pathname === "/" ? "text-primary" : ""}`}
+          >
+            Home
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            onClick={() => setIsMenuOpen(false)}
+            href="/projects"
+            className={`${pathname === "/projects" ? "text-primary" : ""}`}
+          >
+            Projects
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            onClick={() => setIsMenuOpen(false)}
+            href="/blogs"
+            className={`${pathname === "/blogs" ? "text-primary" : ""}`}
+          >
+            Blog
+          </Link>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
 };
