@@ -10,7 +10,7 @@ const projectList = () => {
     {
       projectName: "TeamUp Pro",
       techStacks: ["Supabase", "NextJs 13", "TailwindCSS", "NextUI"],
-      demoLink: "#",
+      demoLink: "teampup-pro.com",
       image: "",
       description: (
         <div className="flex flex-col gap-3">
