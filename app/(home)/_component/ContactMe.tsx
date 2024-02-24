@@ -1,10 +1,10 @@
+"use client";
+
 import { Button, Input, Spacer, Textarea } from "@nextui-org/react";
 import React from "react";
 import Header from "./Header";
-import { createClient } from "@/lib/supabase/client/client";
 
 const ContactMe = () => {
-  const supabase = createClient();
   const [isLoading, setIsLoading] = React.useState(false);
   const [isDisabled, setIsDisabled] = React.useState(false);
   const [formData, setFormData] = React.useState<{
@@ -23,18 +23,30 @@ const ContactMe = () => {
 
     setIsDisabled(true);
     setIsLoading(true);
-    const { data, error } = await supabase.from("message").insert({
-      message: formData.message,
-      contact: formData.email,
-      sender_name: formData.name,
-    });
-    if (!error) {
-      setHint("Message Sent Successfully");
-    } else {
-      setHint("Something went wrong, try again later");
-      setIsDisabled(false);
-    }
+    await sendData();
     setIsLoading(false);
+  };
+
+  const sendData = async () => {
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData }),
+      });
+
+      if (response.ok) {
+        setHint("Message Sent Successfully");
+      } else {
+        setHint("Something went wrong, try again later");
+        setIsDisabled(false);
+        throw new Error("Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
