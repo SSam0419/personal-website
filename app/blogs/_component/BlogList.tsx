@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import BlogCard from "./BlogCard";
 import Blog_1 from "./blogs/Blog_1";
 import Blog_2 from "./blogs/Blog_2";
+import Blog_3 from "./blogs/Blog_3";
 
 const blogData: {
   title: string;
@@ -14,6 +15,10 @@ const blogData: {
   {
     title: "NextUI",
     content: <Blog_1 />,
+  },
+  {
+    title: "Side Projects",
+    content: <Blog_3 />,
   },
 ];
 
