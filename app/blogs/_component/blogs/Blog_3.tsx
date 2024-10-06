@@ -2,7 +2,7 @@ import React from "react";
 
 const Blog_3 = () => {
   return (
-    <article>
+    <article className="flex flex-col gap-2 py-3">
       <p>
         Hey there! I wanted to share some thoughts about my experience with side
         projects.
