@@ -17,6 +17,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { MdOutlineMail } from "react-icons/md";
 
 const CustomNavbar = () => {
   const pathname = usePathname();
@@ -60,15 +62,25 @@ const CustomNavbar = () => {
         <NavbarItem className="hidden md:flex">
           <Popover placement="bottom">
             <PopoverTrigger>
-              <Button>Contact me</Button>
+              <Button
+                onClick={async () => {
+                  await navigator.clipboard.writeText(
+                    "leemingchun419@gmail.com"
+                  );
+
+                  toast.success("Email Copied To Clipboard", {
+                    duration: 1000,
+                  });
+                }}
+              >
+                Contact me
+              </Button>
             </PopoverTrigger>
             <PopoverContent>
               <div className="px-1 py-2">
-                <div className="py-1">
-                  <p className="text-small">Email: </p>
-                  <p className="text-small text-default-400">
-                    leemingchun419@gmail.com
-                  </p>
+                <div className="py-1 flex items-center gap-1">
+                  <MdOutlineMail />
+                  <p className="text-small">leemingchun419@gmail.com</p>
                 </div>
               </div>
             </PopoverContent>
@@ -112,6 +124,7 @@ const CustomNavbar = () => {
           </Link>
         </NavbarMenuItem>
       </NavbarMenu>
+      <Toaster />
     </Navbar>
   );
 };
