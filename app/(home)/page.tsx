@@ -12,8 +12,8 @@ export default function Home() {
       <AboutMe />
       <Spacer y={5} />
       <Expertise />
-      <Spacer y={5} />
-      <ContactMe />
+      {/* <Spacer y={5} />
+      <ContactMe /> */}
       <Spacer y={5} />
       <SocialLinks />
     </div>
